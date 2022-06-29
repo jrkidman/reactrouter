@@ -7,6 +7,7 @@ import BlogPost from './components/BlogPost';
 import { blogPosts } from './utils/SampleBlogs';
 import AllBlogs from "./components/AllBlogs";
 
+
 function App() {
   return (
     <div className="App">
