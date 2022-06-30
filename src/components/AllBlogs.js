@@ -2,16 +2,19 @@ import React from 'react'
 import { Outlet, useSearchParams } from 'react-router-dom';
 
 
-const AllBlogs = ({ blogPosts }) => {
+const AllBlogs = ({ allBlogs }) => {
     const [searchParams, setSearchParams] = useSearchParams();
     const sortOrder = searchParams.get("sortOrder") || "asc";
-    const sortField = searchParams.get("sortField") || "createdAt";
-    // const blogPostsCopy = blogPosts;
-    // const sortedBlogPosts = sortBlogPosts(sortOrder, sortField, blogPostsCopy);
-    console.log("sortOrder", sortOrder);
-    console.log("sortField", sortField);
+    const sortField = searchParams.get("sortField") || "id";
+    const limit = searchParams.get("limit") || "100";
+    const page = searchParams.get("page") || "0";
+    const blogPostsCopy = allBlogs;
 
-    function sortBlogPosts(a, b) {
+    // console.log("sortOrder", sortOrder);
+    // console.log("sortField", sortField);
+
+
+    function compare(a, b) {
         if (sortOrder.toLowerCase() === "asc") {
             if (a[sortField] < b[sortField]) {
                 return -1;
@@ -31,11 +34,28 @@ const AllBlogs = ({ blogPosts }) => {
         return 0;
     }
 
+    const limitPage = (blogs) => {
+        let blogIndex = limit * page;
+        let returnBlogs = [];
+        for (let i = 0; i < limit; i++) {
+            if (blogs[blogIndex]) {
+                returnBlogs.push(blogs[blogIndex]);
+            }
+            blogIndex++
+        }
+        return returnBlogs;
+    }
+
+
+    const sortedBlogPosts = blogPostsCopy.sort(compare);
+    const limitPageBlogs = limitPage(sortedBlogPosts);
+
+
     return (
         <>
             <h1>All Blogs</h1>
             <ul>
-                {blogPosts.sort(sortBlogPosts).map((blog, index) => {
+                {limitPageBlogs.map((blog, index) => {
                     return (
                         <li className="eachPost" key={index}>
                             <p>Title: {blog.title}</p>
@@ -52,22 +72,6 @@ const AllBlogs = ({ blogPosts }) => {
         </>
     )
 };
-
-// const sortBlogsByDate = (sortOrder, sortField, posts) => {
-//     if (sortOrder.toLowerCase() === "asc") {
-//         return posts.sort(function (a, b) {
-//             return a[sortField] - b[sortField];
-//         });
-//     }
-//     if (sortOrder.toLowerCase() === "desc") {
-//         return posts.sort(function (a, b) {
-//             return b[sortField] - a[sortField];
-//         });
-//     }
-
-//     return posts;
-
-// };
 
 
 

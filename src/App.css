@@ -50,3 +50,15 @@ H1 {
 p {
   color: white
 }
+
+label {
+  color: white;
+}
+
+#submit {
+  color: white;
+}
+
+input {
+  background-color: white;
+}
