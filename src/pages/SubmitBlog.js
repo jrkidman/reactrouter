@@ -25,7 +25,7 @@ const SubmitBlog = ({ allBlogs, setAllBlogs }) => {
             <br></br>
 
             <label>Blog Text</label>
-            <input id="text"
+            <textarea id="text"
                 size="100"
                 type="text"
                 value={text}
