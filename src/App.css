@@ -4,7 +4,7 @@
 
 .App {
   text-align: center;
-  background-color: #282c34;
+  background-color: black;
 }
 
 .App-logo {
@@ -61,6 +61,9 @@ label {
 
 input {
   background-color: white;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 7px;
 }
 
 textarea {

@@ -11,7 +11,9 @@ const SubmitBlog = ({ allBlogs, setAllBlogs }) => {
     // const redirectLocation = searchParams.navigate("redirect") || "blogs";
 
     return (
-        <>
+        <div>
+            <h1>Submit New Blog</h1>
+
             <label>Blog Title</label>
             <input id="title"
                 size="50"
@@ -21,19 +23,6 @@ const SubmitBlog = ({ allBlogs, setAllBlogs }) => {
                     const newTitle = e.target.value;
                     setTitle(newTitle);
                 }} />
-            <br></br>
-            <br></br>
-
-            <label>Blog Text</label>
-            <textarea id="text"
-                size="100"
-                type="text"
-                value={text}
-                onChange={(e) => {
-                    const newText = e.target.value;
-                    setText(newText);
-                }}
-            />
             <br></br>
             <br></br>
 
@@ -49,6 +38,21 @@ const SubmitBlog = ({ allBlogs, setAllBlogs }) => {
             />
             <br></br>
             <br></br>
+
+
+            <label>Blog Text</label>
+            <textarea id="text"
+                size="100"
+                type="text"
+                value={text}
+                onChange={(e) => {
+                    const newText = e.target.value;
+                    setText(newText);
+                }}
+            />
+            <br></br>
+            <br></br>
+
 
             <button
                 id="submit"
@@ -72,7 +76,7 @@ const SubmitBlog = ({ allBlogs, setAllBlogs }) => {
             >
                 Submit
             </button>
-        </>
+        </div>
     );
 }
 
